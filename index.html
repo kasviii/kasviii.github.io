@@ -658,7 +658,7 @@
     <h2>Get in Touch</h2>
     <p>Open to summer research programs, internships, and engineering roles in ML and AI systems.</p>
     <div class="contact-links">
-      <a class="contact-link primary" href="/cdn-cgi/l/email-protection#ef848e9c9986c19ddfdbaf88828e8683c18c8082">✉ <span class="__cf_email__" data-cfemail="8de6ecfefbe4a3ffbdb9cdeae0ece4e1a3eee2e0">[email&#160;protected]</span></a>
+      <a class="contact-link primary" href="mailto:kasvi.r04@gmail.com">✉ kasvi.r04@gmail.com</a>
       <a class="contact-link" href="https://linkedin.com/in/kasvi-rajwar-85747228a" target="_blank">LinkedIn</a>
       <a class="contact-link" href="https://github.com/kasviii" target="_blank">GitHub</a>
     </div>
@@ -669,8 +669,18 @@
   © 2025 Kasvi Rajwar · Built with intention
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // Scroll reveal
+<script>
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
-    entri
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+</script>
+
+</body>
+</html>
