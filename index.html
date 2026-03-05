@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kasvi Rajwar — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #F7F4EF;
+      --ink: #1A1A18;
+      --muted: #7A7A72;
+      --accent: #2D5BE3;
+      --accent-light: #EAF0FF;
+      --border: #E2DDD6;
+      --white: #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 5vw;
+      background: rgba(247,244,239,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      animation: fadeDown 0.6s ease both;
+    }
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.01em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; font-size: 0.875rem; font-weight: 500;
+      color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 8rem 5vw 5rem;
+      position: relative;
+    }
+    .hero-inner { max-width: 780px; }
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent);
+      background: var(--accent-light); border-radius: 2px;
+      padding: 0.3rem 0.75rem; margin-bottom: 1.75rem;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+    h1 em { font-style: italic; color: var(--accent); }
+    .hero-sub {
+      margin-top: 1.5rem;
+      font-size: 1.1rem; font-weight: 300; color: var(--muted);
+      max-width: 520px; line-height: 1.7;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+    .hero-ctas {
+      margin-top: 2.5rem; display: flex; gap: 1rem; flex-wrap: wrap;
+      animation: fadeUp 0.7s 0.4s ease both;
+    }
+    .btn-primary {
+      padding: 0.85rem 2rem; background: var(--ink); color: var(--white);
+      font-size: 0.9rem; font-weight: 500; letter-spacing: 0.02em;
+      border: none; cursor: pointer; text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      border-radius: 2px;
+    }
+    .btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
+    .btn-outline {
+      padding: 0.85rem 2rem; background: transparent; color: var(--ink);
+      font-size: 0.9rem; font-weight: 500; letter-spacing: 0.02em;
+      border: 1.5px solid var(--border); cursor: pointer; text-decoration: none;
+      transition: border-color 0.2s, transform 0.15s;
+      border-radius: 2px;
+    }
+    .btn-outline:hover { border-color: var(--ink); transform: translateY(-2px); }
+
+    .hero-stats {
+      margin-top: 4rem; display: flex; gap: 3rem; flex-wrap: wrap;
+      animation: fadeUp 0.7s 0.5s ease both;
+    }
+    .stat-item { }
+    .stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem; color: var(--ink); line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.78rem; color: var(--muted); letter-spacing: 0.06em;
+      text-transform: uppercase; margin-top: 0.3rem;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 5vw; }
+    .section-label {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.1; letter-spacing: -0.02em;
+      margin-bottom: 3rem;
+    }
+    .section-divider {
+      border: none; border-top: 1px solid var(--border);
+      margin: 0 5vw;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--white); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+      align-items: start;
+    }
+    .about-text p {
+      color: var(--muted); line-height: 1.8; margin-bottom: 1.2rem;
+      font-weight: 300;
+    }
+    .about-text p strong { color: var(--ink); font-weight: 500; }
+    .about-highlights { }
+    .highlight-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 1.2rem 0; border-bottom: 1px solid var(--border);
+    }
+    .highlight-item:first-child { border-top: 1px solid var(--border); }
+    .hi-icon {
+      width: 36px; height: 36px; background: var(--accent-light);
+      border-radius: 2px; display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .hi-text strong { font-size: 0.9rem; font-weight: 500; display: block; }
+    .hi-text span { font-size: 0.82rem; color: var(--muted); }
+
+    /* ── SKILLS ── */
+    #skills { }
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+    .skill-card {
+      background: var(--white); border: 1px solid var(--border);
+      padding: 1.75rem; border-radius: 2px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .skill-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .skill-card-title {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 1rem;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .skill-tag {
+      font-size: 0.8rem; background: var(--cream); color: var(--ink);
+      padding: 0.3rem 0.65rem; border-radius: 2px; font-weight: 400;
+    }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--white); }
+    .projects-list { display: flex; flex-direction: column; gap: 1.5px; }
+    .project-card {
+      background: var(--cream); border: 1px solid var(--border);
+      padding: 2.25rem 2.5rem;
+      transition: border-color 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .project-card::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px; background: transparent;
+      transition: background 0.2s;
+    }
+    .project-card:hover { border-color: var(--accent); }
+    .project-card:hover::before { background: var(--accent); }
+    .project-top {
+      display: flex; align-items: flex-start;
+      justify-content: space-between; gap: 1rem; margin-bottom: 0.75rem;
+    }
+    .project-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem; line-height: 1.2;
+    }
+    .project-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; flex-shrink: 0; }
+    .badge {
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 0.25rem 0.6rem; border-radius: 2px;
+    }
+    .badge-blue { background: var(--accent-light); color: var(--accent); }
+    .badge-green { background: #E8F5E9; color: #2E7D32; }
+    .badge-orange { background: #FFF3E0; color: #E65100; }
+    .project-desc {
+      color: var(--muted); font-weight: 300; line-height: 1.7;
+      font-size: 0.95rem; margin-bottom: 1.25rem; max-width: 680px;
+    }
+    .project-tech { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem; }
+    .tech-tag {
+      font-size: 0.78rem; color: var(--muted); background: var(--white);
+      padding: 0.2rem 0.6rem; border: 1px solid var(--border); border-radius: 2px;
+    }
+    .project-link {
+      font-size: 0.82rem; font-weight: 500; color: var(--accent);
+      text-decoration: none; letter-spacing: 0.04em;
+      display: inline-flex; align-items: center; gap: 0.3rem;
+    }
+    .project-link:hover { text-decoration: underline; }
+
+    /* ── EXPERIENCE ── */
+    #experience { }
+    .exp-item {
+      display: grid; grid-template-columns: 180px 1fr; gap: 3rem;
+      padding: 2.5rem 0; border-bottom: 1px solid var(--border);
+    }
+    .exp-item:first-of-type { border-top: 1px solid var(--border); }
+    .exp-date {
+      font-size: 0.82rem; color: var(--muted); font-weight: 400;
+      padding-top: 0.2rem; line-height: 1.5;
+    }
+    .exp-company {
+      font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--accent); font-weight: 500; margin-top: 0.4rem;
+    }
+    .exp-role {
+      font-family: 'DM Serif Display', serif; font-size: 1.3rem;
+      margin-bottom: 0.75rem; line-height: 1.2;
+    }
+    .exp-bullets { list-style: none; }
+    .exp-bullets li {
+      font-size: 0.9rem; color: var(--muted); font-weight: 300;
+      padding: 0.3rem 0; padding-left: 1rem; position: relative;
+      line-height: 1.6;
+    }
+    .exp-bullets li::before {
+      content: '—'; position: absolute; left: 0; color: var(--accent);
+      font-size: 0.7rem; top: 0.45rem;
+    }
+
+    /* ── ACHIEVEMENTS ── */
+    #achievements { background: var(--white); }
+    .ach-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .ach-card {
+      border: 1px solid var(--border); padding: 1.75rem;
+      background: var(--cream); border-radius: 2px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .ach-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .ach-year {
+      font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent); font-weight: 500; margin-bottom: 0.6rem;
+    }
+    .ach-title {
+      font-family: 'DM Serif Display', serif; font-size: 1.1rem;
+      margin-bottom: 0.5rem; line-height: 1.3;
+    }
+    .ach-desc { font-size: 0.85rem; color: var(--muted); font-weight: 300; line-height: 1.6; }
+
+    /* ── CONTACT ── */
+    #contact {
+      text-align: center;
+      background: var(--ink); color: var(--white);
+    }
+    #contact .section-label { color: #6B8EF5; }
+    #contact h2 { color: var(--white); margin-bottom: 1rem; }
+    #contact p { color: #9A9A92; font-weight: 300; max-width: 480px; margin: 0 auto 2.5rem; }
+    .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+    .contact-link {
+      padding: 0.85rem 1.75rem; border: 1.5px solid #333;
+      color: var(--white); text-decoration: none; font-size: 0.875rem;
+      font-weight: 500; letter-spacing: 0.04em;
+      border-radius: 2px; transition: border-color 0.2s, background 0.2s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .contact-link:hover { border-color: #6B8EF5; background: rgba(107,142,245,0.1); }
+    .contact-link.primary {
+      background: var(--accent); border-color: var(--accent); color: var(--white);
+    }
+    .contact-link.primary:hover { background: #1D4BD1; border-color: #1D4BD1; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink); color: #555; font-size: 0.78rem;
+      text-align: center; padding: 1.5rem 5vw;
+      border-top: 1px solid #222;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">Kasvi Rajwar</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#achievements">Awards</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <span class="hero-tag">CS Undergraduate · AI &amp; Backend</span>
+    <h1>Kasvi<br/><em>Rajwar</em></h1>
+    <p class="hero-sub">
+      Third-year Computer Science student at Manipal University Jaipur — building at the intersection of deep learning, explainable AI, and full-stack systems.
+    </p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">1</div>
+        <div class="stat-label">Published Patent</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">~99%</div>
+        <div class="stat-label">Model Accuracy (XAI)</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">Top 2%</div>
+        <div class="stat-label">Student Excellence</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">2026</div>
+        <div class="stat-label">AiCCONs Accepted</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="reveal">
+    <div class="section-label">About</div>
+    <h2>Background</h2>
+  </div>
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p>
+        I'm a third-year Computer Science undergraduate at Manipal University Jaipur, pursuing research in <strong>explainable AI for medical imaging</strong> and building full-stack systems in production.
+      </p>
+      <p>
+        My work spans deep learning model development, RESTful API design, and data-driven analytics. I'm drawn to problems where interpretability matters — especially in high-stakes domains like healthcare.
+      </p>
+      <p>
+        I hold a <strong>published Indian patent</strong> and have research accepted at AiCCONs 2026. I'm actively pursuing summer research programs and engineering roles in ML and AI systems.
+      </p>
+    </div>
+    <div class="about-highlights">
+      <div class="highlight-item">
+        <div class="hi-icon">🎓</div>
+        <div class="hi-text">
+          <strong>Manipal University Jaipur</strong>
+          <span>B.E. Computer Science · Expected 2027</span>
+        </div>
+      </div>
+      <div class="highlight-item">
+        <div class="hi-icon">📄</div>
+        <div class="hi-text">
+          <strong>Indian Patent (2025)</strong>
+          <span>AI &amp; Psychology for Student Personality Development</span>
+        </div>
+      </div>
+      <div class="highlight-item">
+        <div class="hi-icon">🔬</div>
+        <div class="hi-text">
+          <strong>AiCCONs 2026 — Accepted</strong>
+          <span>XAI for Colon Cancer Detection</span>
+        </div>
+      </div>
+      <div class="highlight-item">
+        <div class="hi-icon">📍</div>
+        <div class="hi-text">
+          <strong>Jaipur, Rajasthan, India</strong>
+          <span>Open to remote &amp; relocation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="reveal">
+    <div class="section-label">Technical Skills</div>
+    <h2>Toolkit</h2>
+  </div>
+  <div class="skills-grid reveal">
+    <div class="skill-card">
+      <div class="skill-card-title">Languages</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Java</span>
+        <span class="skill-tag">C++</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">HTML/CSS</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">ML &amp; AI</div>
+      <div class="skill-tags">
+        <span class="skill-tag">TensorFlow</span>
+        <span class="skill-tag">Scikit-learn</span>
+        <span class="skill-tag">Grad-CAM</span>
+        <span class="skill-tag">SHAP</span>
+        <span class="skill-tag">Transfer Learning</span>
+        <span class="skill-tag">CNNs</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">Data &amp; Analytics</div>
+      <div class="skill-tags">
+        <span class="skill-tag">NumPy</span>
+        <span class="skill-tag">Pandas</span>
+        <span class="skill-tag">Matplotlib</span>
+        <span class="skill-tag">Seaborn</span>
+        <span class="skill-tag">Chart.js</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-title">Backend &amp; Tools</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Flask</span>
+        <span class="skill-tag">MySQL</span>
+        <span class="skill-tag">SQLAlchemy</span>
+        <span class="skill-tag">REST APIs</span>
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">Postman</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="reveal">
+    <div class="section-label">Work</div>
+    <h2>Projects</h2>
+  </div>
+  <div class="projects-list reveal">
+
+    <!-- XAI -->
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-name">Explainable AI for Colon Cancer Detection</div>
+        <div class="project-badges">
+          <span class="badge badge-green">AiCCONs 2026</span>
+          <span class="badge badge-blue">Research</span>
+        </div>
+      </div>
+      <p class="project-desc">
+        Designed an explainable deep learning framework for colon cancer detection using histopathology and endoscopy images. Merged the LC25000 and Kvasir datasets into a three-class classification task. Achieved ~99% test accuracy with ResNet50, and integrated Grad-CAM and SHAP for model interpretability.
+      </p>
+      <div class="project-tech">
+        <span class="tech-tag">ResNet50</span>
+        <span class="tech-tag">DenseNet121</span>
+        <span class="tech-tag">InceptionV3</span>
+        <span class="tech-tag">Xception</span>
+        <span class="tech-tag">Grad-CAM</span>
+        <span class="tech-tag">SHAP</span>
+        <span class="tech-tag">TensorFlow</span>
+        <span class="tech-tag">Transfer Learning</span>
+      </div>
+      <a class="project-link" href="https://github.com/kasviii" target="_blank">View on GitHub →</a>
+    </div>
+
+    <!-- Deepfake -->
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-name">DeepFake Detection — AI Image Classifier</div>
+        <div class="project-badges">
+          <span class="badge badge-orange">In Development</span>
+        </div>
+      </div>
+      <p class="project-desc">
+        Designing and training a Convolutional Neural Network to distinguish AI-generated images from real ones. Focused on dataset preprocessing, hyperparameter tuning, and robust evaluation metrics, with integration support for a web-facing deployment.
+      </p>
+      <div class="project-tech">
+        <span class="tech-tag">CNN</span>
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">TensorFlow</span>
+        <span class="tech-tag">Image Preprocessing</span>
+      </div>
+    </div>
+
+    <!-- Room Generator -->
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-name">AI Room Generator — Style Transfer &amp; Synthesis</div>
+        <div class="project-badges">
+          <span class="badge badge-orange">In Development</span>
+        </div>
+      </div>
+      <p class="project-desc">
+        Built two generative pipelines: a style-transfer model that re-styles rooms while preserving furniture layout, and a generative model that synthesises entirely new room designs. Deployed via Streamlit with ngrok for remote interactive access.
+      </p>
+      <div class="project-tech">
+        <span class="tech-tag">PyTorch</span>
+        <span class="tech-tag">TensorFlow</span>
+        <span class="tech-tag">Streamlit</span>
+        <span class="tech-tag">Style Transfer</span>
+        <span class="tech-tag">Generative AI</span>
+      </div>
+    </div>
+
+    <!-- Patent -->
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-name">Student Personality Development System</div>
+        <div class="project-badges">
+          <span class="badge badge-green">Patent Published</span>
+          <span class="badge badge-blue">2025</span>
+        </div>
+      </div>
+      <p class="project-desc">
+        Co-authored an Indian patent integrating AI with psychology to create a holistic student personality development system. Published as Indian Patent 202511028319 A in 2025.
+      </p>
+      <div class="project-tech">
+        <span class="tech-tag">AI Systems</span>
+        <span class="tech-tag">Psychology Integration</span>
+        <span class="tech-tag">Research</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="reveal">
+    <div class="section-label">Experience</div>
+    <h2>Work History</h2>
+  </div>
+
+  <div class="reveal">
+    <div class="exp-item">
+      <div>
+        <div class="exp-date">Jun 2025 – Aug 2025</div>
+        <div class="exp-company">247Around</div>
+      </div>
+      <div>
+        <div class="exp-role">Software Development Intern</div>
+        <ul class="exp-bullets">
+          <li>Designed and developed a full-stack expense tracking web application using Flask, MySQL, and SQLAlchemy following MVC architecture.</li>
+          <li>Implemented secure user authentication, role-based access, and full CRUD operations for financial records.</li>
+          <li>Built RESTful APIs returning JSON responses and integrated Chart.js dashboards for spending pattern visualisation.</li>
+          <li>Enabled CSV export functionality for transaction data, improving usability for financial analysis.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider" />
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="reveal">
+    <div class="section-label">Recognition &amp; Leadership</div>
+    <h2>Highlights</h2>
+  </div>
+  <div class="ach-grid reveal">
+    <div class="ach-card">
+      <div class="ach-year">2025</div>
+      <div class="ach-title">Student Excellence Award</div>
+      <div class="ach-desc">Awarded to the top 2% of students for outstanding academic performance and contributions to the university community.</div>
+    </div>
+    <div class="ach-card">
+      <div class="ach-year">2025</div>
+      <div class="ach-title">ICAIC Conference Organiser</div>
+      <div class="ach-desc">Supported the planning and execution of the International Conference on AI and Computing, coordinating logistics and assisting speakers.</div>
+    </div>
+    <div class="ach-card">
+      <div class="ach-year">2024–25</div>
+      <div class="ach-title">Event Head, International Student Cell</div>
+      <div class="ach-desc">Spearheaded planning and execution of 3+ large-scale events for a community of 500+ international students.</div>
+    </div>
+    <div class="ach-card">
+      <div class="ach-year">2024–25</div>
+      <div class="ach-title">Executive Committee, Manipal Runners Club</div>
+      <div class="ach-desc">Managed budgeting and organised 6 large-scale events, some attracting nearly 5,000 students.</div>
+    </div>
+    <div class="ach-card">
+      <div class="ach-year">2025</div>
+      <div class="ach-title">CSE Department Editor &amp; Writer</div>
+      <div class="ach-desc">Created and edited content for departmental publications, ensuring clarity, accuracy, and engagement.</div>
+    </div>
+    <div class="ach-card">
+      <div class="ach-year">2021</div>
+      <div class="ach-title">School Representative — PM of Denmark</div>
+      <div class="ach-desc">Represented KV Sector VIII in a personal meeting with the Prime Minister of Denmark, Mette Frederiksen.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="reveal">
+    <div class="section-label">Let's Connect</div>
+    <h2>Get in Touch</h2>
+    <p>Open to summer research programs, internships, and engineering roles in ML and AI systems.</p>
+    <div class="contact-links">
+      <a class="contact-link primary" href="mailto:kasvi.r04@gmail.com">✉ kasvi.r04@gmail.com</a>
+      <a class="contact-link" href="https://linkedin.com/in/kasvi-rajwar-85747228a" target="_blank">LinkedIn</a>
+      <a class="contact-link" href="https://github.com/kasviii" target="_blank">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2025 Kasvi Rajwar · Built with intention
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+</script>
+
+</body>
+</html>
